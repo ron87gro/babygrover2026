@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Krishna Sent Us a Miracle</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* Body & General */
+body {
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#F8F5F0;
+    text-align:center;
+    color:#444;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* Polka Dot Background */
+body::before {
+    content: '';
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image: radial-gradient(#CFE8F7 10%, transparent 10%), radial-gradient(#FADADD 10%, transparent 10%);
+    background-size:50px 50px;
+    background-position:0 0,25px 25px;
+    z-index:-2;
+}
+
+/* Sections */
+.section {
+    padding:120px 20px;
+    animation: fadeIn 2s ease-in;
+    background: linear-gradient(to bottom, #fff5f8, #f0faff);
+    border-radius: 20px;
+    margin: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+h1, h2 {
+    font-family:'Playfair Display', serif;
+    color:#C6A75E;
+    text-shadow: 0 0 10px rgba(198,167,94,0.4);
+}
+
+h1 {
+    font-size:3rem;
+}
+
+h2 {
+    font-size:2rem;
+}
+
+/* Buttons */
+button {
+    padding:18px 35px;
+    border:none;
+    border-radius:30px;
+    background:#CFE8F7;
+    font-size:20px;
+    margin:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    background:#FADADD;
+    transform:scale(1.05);
+}
+
+/* Countdown */
+.countdown {
+    font-size:28px;
+    margin-top:20px;
+}
+
+/* Floating Peacock */
+.peacock {
+    font-size:50px;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Balloon Styles */
+#balloons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0.9;
+    animation: rise 10s linear infinite;
+}
+
+.balloon.pink { background-color: #FADADD; }
+.balloon.blue { background-color: #CFE8F7; }
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@keyframes float {
+    0% {transform:translateY(0px);}
+    50% {transform:translateY(-15px);}
+    100% {transform:translateY(0px);}
+}
+
+@keyframes rise {
+    0% { transform: translateY(100vh) translateX(0px); }
+    100% { transform: translateY(-150px) translateX(50px); }
+}
+
+#nameReveal {
+    display:none;
+    margin-top:30px;
+    font-size:3rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Krishna Music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="krishna_flute.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Balloons -->
+<div id="balloons"></div>
+
+<!-- Intro Section -->
+<div class="section">
+    <div class="peacock">🦚</div>
+    <h2>We prayed for a blessing…</h2>
+    <h1>And Krishna smiled.</h1>
+    <p>Our little miracle is on the way.</p>
+</div>
+
+<!-- Baby Arrival Section -->
+<div class="section">
+    <h1>✨ Baby Grover Arriving September 2026 ✨</h1>
+    <p>Handpicked by Krishna.<br>Blessed by love.<br>Protected by faith.</p>
+</div>
+
+<!-- Team Blue / Pink Section -->
+<div class="section">
+    <h2>Team Blue or Team Pink?</h2>
+    <button onclick="showBlessing()">💙 Team Blue</button>
+    <button onclick="showBlessing()">💖 Team Pink</button>
+</div>
+
+<!-- Countdown Section -->
+<div class="section">
+    <h2>Counting Down to Our Greatest Blessing</h2>
+    <div id="countdown" class="countdown"></div>
+</div>
+
+<!-- Name Reveal Section -->
+<div class="section">
+    <button onclick="revealName()">🪔 Krishna Has Chosen a Name…</button>
+    <div id="nameReveal">✨ Baby [Coming Soon] ✨</div>
+</div>
+
+<script>
+// Team Button Alert
+function showBlessing() {
+    alert("Whichever Krishna chooses, our hearts are already full ❤️");
+}
+
+// Countdown Timer
+var countDownDate = new Date("September 6, 2026 00:00:00").getTime();
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById("countdown").innerHTML =
+  days + " Days " + hours + " Hours " + minutes + " Minutes ";
+}, 1000);
+
+// Name Reveal
+function revealName() {
+    document.getElementById("nameReveal").style.display = "block";
+}
+
+// Generate Floating Balloons
+for(let i=0;i<20;i++){
+    let balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.classList.add(Math.random() > 0.5 ? "pink" : "blue");
+    balloon.style.left = Math.random() * 100 + "%";
+    balloon.style.animationDuration = 8 + Math.random()*4 + "s";
+    document.getElementById("balloons").appendChild(balloon);
+}
+</script>
+
+</body>
+</html>
 
